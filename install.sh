@@ -4087,7 +4087,7 @@ updateV2RayAgent() {
 
 	sudo chmod 700 /etc/v2ray-agent/install.sh
 	local version
-	version=$(grep 'Current version: v' "/etc/v2ray-agent/install.sh" | awk -F "[v]" '{print $3}' | tail -n +2 | head -n 2 | awk -F "[\"]" '{print $1}')
+	version=$(grep -o 'Current Version: v[0-9\.]*' /etc/v2ray-agent/install.sh | awk -F "v" '{print $2}')
 
 	echoContent green "\n ---> Update completed"
 	echoContent yellow " ---> Please manually execute [menu] to open the script"
