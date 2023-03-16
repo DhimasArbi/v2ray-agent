@@ -1689,13 +1689,13 @@ installXray() {
 
 	if [[ "${coreInstallType}" != "1" ]]; then
 
-		version=$(curl -s https://api.github.com/repos/DhimasArbi/Xray-core/releases | jq -r '.[]|select (.prerelease==false)|.tag_name' | head -1)
+		version=$(curl -s https://api.github.com/repos/XTLS/Xray-core/releases | jq -r '.[]|select (.prerelease==false)|.tag_name' | head -1)
 
 		echoContent green " ---> Xray-core version: ${version}"
 		if wget --help | grep -q show-progress; then
-			wget -c -q --show-progress -P /etc/v2ray-agent/xray/ "https://github.com/DhimasArbi/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip"
+			wget -c -q --show-progress -P /etc/v2ray-agent/xray/ "https://github.com/XTLS/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip"
 		else
-			wget -c -P /etc/v2ray-agent/xray/ "https://github.com/DhimasArbi/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip" >/dev/null 2>&1
+			wget -c -P /etc/v2ray-agent/xray/ "https://github.com/XTLS/Xray-core/releases/download/${version}/${xrayCoreCPUVendor}.zip" >/dev/null 2>&1
 		fi
 
 		unzip -o "/etc/v2ray-agent/xray/${xrayCoreCPUVendor}.zip" -d /etc/v2ray-agent/xray >/dev/null
@@ -5598,7 +5598,7 @@ hysteriaVersionManageMenu() {
 menu() {
 	cd "$HOME" || exit
 	# echoContent red "\n=============================================================="
-	echo -e "-------------------=[ AUTOSCRIPT VPN ]=------------------\n\tAuthor: Mack-a\n\tCurrent Version: v1.0 \n---------------------------------------------------------\n\t\tServer Information${RESET}\n\tISP:\t\t$(curl -s ipinfo.io/org/ | awk '{print $2}{print $3}' | sed -e 'N;s/\n/ /')\n\tOS:\t\t$(lsb_release -d | awk '{print $2}{print $3}' | sed -e 'N;s/\n/ /')\n\tIP:\t\t$( curl -s https://ipinfo.io/ip/ )\n\tKernel Version:\t$(uname -r)$(printf ' %.0s' {1..23})\n\tCPU Model:\t$(grep -m1 'model name' /proc/cpuinfo | awk -F": " '{print $2}')$(printf ' %.0s' {1..13})\n\tTotal Memory:\t$(free -h | awk '/Mem:/ {print $2}')$(printf ' %.0s' {1..14})\n\tUptime:\t\t$(uptime | awk '{print $3}' | tr -d ',')" | boxes -d diamonds -a hcvc
+	echo -e "-------------------=[ AUTOSCRIPT VPN ]=------------------\n\tAuthor: Mack-a\n\tCurrent Version: v1.1 \n---------------------------------------------------------\n\t\tServer Information${RESET}\n\tISP:\t\t$(curl -s ipinfo.io/org/ | awk '{print $2}{print $3}' | sed -e 'N;s/\n/ /')\n\tOS:\t\t$(lsb_release -d | awk '{print $2}{print $3}' | sed -e 'N;s/\n/ /')\n\tIP:\t\t$( curl -s https://ipinfo.io/ip/ )\n\tKernel Version:\t$(uname -r)$(printf ' %.0s' {1..23})\n\tCPU Model:\t$(grep -m1 'model name' /proc/cpuinfo | awk -F": " '{print $2}')$(printf ' %.0s' {1..13})\n\tTotal Memory:\t$(free -h | awk '/Mem:/ {print $2}')$(printf ' %.0s' {1..14})\n\tUptime:\t\t$(uptime | awk '{print $3}' | tr -d ',')" | boxes -d diamonds -a hcvc
 	showInstallStatus
 	# echoContent red "\n=============================================================="
 	if [[ -n "${coreInstallType}" ]]; then
